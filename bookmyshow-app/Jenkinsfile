@@ -1,4 +1,4 @@
-pipeline {
+﻿pipeline {
     agent any
 
     options {
@@ -9,6 +9,7 @@ pipeline {
     environment {
         APP_NAME = 'bookmyshow-event'
         IMAGE_TAG = '1.2'
+        APP_DIR = 'bookmyshow-app'
         K8S_NAMESPACE = 'bookmyshow-ci'
         K8S_API = 'https://172.18.0.5:6443'
     }
@@ -40,7 +41,7 @@ pipeline {
                           --certificate-authority=/tmp/k8s-ca.crt \
                           --token="$K8S_TOKEN" \
                           -n "$K8S_NAMESPACE" \
-                          apply --validate=false -f "${APP_DIR}/k8s/deployment.yaml"
+                          apply --validate=false -f "bookmyshow-app/k8s/deployment.yaml"
                     '''
                 }
             }
