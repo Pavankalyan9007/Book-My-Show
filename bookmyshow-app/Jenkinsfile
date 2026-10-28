@@ -40,7 +40,7 @@ pipeline {
                           --certificate-authority=/tmp/k8s-ca.crt \
                           --token="$K8S_TOKEN" \
                           -n "$K8S_NAMESPACE" \
-                          apply -f bookmyshow-app/k8s/deployment.yaml
+                          apply --validate=false -f "${APP_DIR}/k8s/deployment.yaml"
                     '''
                 }
             }
