@@ -22,7 +22,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t ${APP_NAME}:${IMAGE_TAG} .'
+                sh 'docker build -t ${APP_NAME}:${IMAGE_TAG} bookmyshow-app'
             }
         }
 
@@ -40,7 +40,7 @@ pipeline {
                           --certificate-authority=/tmp/k8s-ca.crt \
                           --token="$K8S_TOKEN" \
                           -n "$K8S_NAMESPACE" \
-                          apply -f k8s/deployment.yaml
+                          apply -f bookmyshow-app/k8s/deployment.yaml
                     '''
                 }
             }
@@ -64,6 +64,15 @@ pipeline {
                     '''
                 }
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'BookMyShow CI/CD pipeline completed successfully.'
+        }
+        failure {
+            echo 'Pipeline failed. Check Console Output.'
         }
     }
 }
