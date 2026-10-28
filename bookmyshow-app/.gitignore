@@ -1,0 +1,25 @@
+
+# Kubernetes credentials and local configuration
+jenkins-kubeconfig.yaml
+k8s-ca-base64.txt
+k8s-ca.crt
+.env
+.env.*
+!.env.example
+
+# Local backups
+bookmyshow-deployment-backup.yaml
+bookmyshow-service-backup.yaml
+jenkins-bookmyshow-rbac.yaml
+
+# Dependencies and build output
+node_modules/
+build/
+
+start-error.txt
+
+start-error.txt
+
+# Local Jenkins recovery files
+jenkins-config-backup.xml
+jenkins-recovery.groovy
